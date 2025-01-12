@@ -35,7 +35,7 @@ function App() {
               <CreateBlog />
             </ProtectedRouteForAdmin>
           } />
-          <Route path="/*" element={<Nopage/> } />
+          {/* <Route path="/*" element={<Nopage/> } /> */}
         </Routes>
         <Toaster />
       </Router>
