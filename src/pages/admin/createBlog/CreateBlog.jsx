@@ -217,7 +217,7 @@ function CreateBlog() {
 
                 {/* Six Preview Section  */}
                 <div className="">
-                    <h1 className=" text-center mb-3 text-2xl">Preview</h1>
+                    <h1 className=" text-center mb-3 mt-4 text-2xl">Preview</h1>
                     <div className="content">
                         <div className={`[&> h1]:text-[32px] [&>h1]:font-bold  [&>h1]:mb-2.5
                         ${mode === 'dark' ? '[&>h1]:text-[#ff4d4d]' : '[&>h1]:text-black'}
