@@ -10,10 +10,38 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import myContext from "../../context/data/myContext";
 import SearchDialog from "../searchDialog/SearchDialog";
-import ShareDialogBox from "../shareDialogBox/ShareDialogBox";
+import { ToastContainer } from "react-toastify";
+import { useParams, useLocation,useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 export default function Nav() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const handleCopy = (e) => {
+    e.preventDefault();  // Prevent the default link behavior
+    
+    // Check if the current path contains the "bloginfo/:id" pattern
+    const isBlogLink = currentPath.includes("bloginfo/");
+
+    // Copy the URL of the current path
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      // Show the appropriate toast message based on the path
+      if (isBlogLink) {
+        toast.success("Blog link copied!");
+      } else {
+        toast.success("Website link copied!");
+      }
+
+      // After a short delay, navigate to home page
+      setTimeout(() => {
+        navigate("/");  // Navigate to the homepage
+      }, 1500);  // Adjust the timeout to give enough time for the toast
+    });
+  };
   const [openNav, setOpenNav] = React.useState(false);
 
   const context = useContext(myContext);
@@ -62,6 +90,17 @@ export default function Nav() {
       ) : (
         ""
       )}
+      <Typography
+      as="li"
+      variant="small"
+      color="blue-gray"
+      className="p-1 font-normal"
+      style={{ color: mode === "dark" ? "white" : "white" }}
+    >
+      <Link to={"/"} className="flex items-center text-lg" onClick={handleCopy}>
+        Share
+      </Link>
+    </Typography>
     </ul>
   );
 
@@ -70,8 +109,9 @@ export default function Nav() {
       {/* Navbar  */}
       <Navbar
         className="sticky inset-0 z-20 h-max max-w-full border-none rounded-none py-2 px-4 lg:px-8 lg:py-2"
-        style={{ background: mode === "dark" ? "rgb(30, 41, 59)" : "#30336b" }}
+        style={{ background: mode === "dark" ? "rgb(30, 41, 59)" : "#0F3B44" }}
       >
+        <ToastContainer />
         {/* Desktop View  */}
         <div className="flex items-center justify-between text-blue-gray-900">
           {/* Home Page Link  */}
@@ -103,10 +143,10 @@ export default function Nav() {
             </div>
 
             {/* Share Icon */}
-            <div className="hidden lg:block">
-              {/* <AiOutlineShareAlt size={20} color="white" /> */}
+            {/* <div className="hidden lg:block">
+              
               <ShareDialogBox />
-            </div>
+            </div> */}
 
             {/* Admin Profile Pic */}
             <div>

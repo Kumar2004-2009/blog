@@ -7,7 +7,7 @@ function Footer() {
   return (
     <footer
       className="body-font"
-      style={{ background: mode === "dark" ? "rgb(30, 41, 59)" : "#30336b" }}
+      style={{ background: mode === "dark" ? "rgb(30, 41, 59)" : "#0F3B44" }}
     >
       {/* Left Content  */}
       <div className="container px-5 py-3 mx-auto flex items-center sm:flex-row flex-col">
@@ -20,7 +20,7 @@ function Footer() {
             alt="logo"
           />
           {/* logo text  */}
-          <span className="ml-3 text-xl text-white">Devknus</span>
+          <span className="ml-3 text-xl text-white">BlogScape</span>
         </div>
 
         {/* items  */}
